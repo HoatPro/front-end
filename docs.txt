@@ -1,0 +1,40 @@
+ /* Created by hoangnh40 */
+* Start project
+- npm install
+- dev: npm run dev
+- start build:  + npm run build
+                + npm start
+
+* Configure:
+
+ - Cấu hình nextjs
+    + Tạo server.js (dùng nodejs + express)
+    + Folder "static" chứa các phần tử cần public ( images,....)
+    + Folder "pages", tên các file js trong đó chính là các router
+    
+     
+ - Sử dụng Semantic UI 
+    + Để sử dụng dc css bên ngoài và Semantic-UI cấu hình trong file next.config.js:
+        const withCss = require('@zeit/next-css')
+        module.exports = withCss({
+        webpack (config) {
+            config.module.rules.push({
+            test: /\.(png|svg|eot|otf|ttf|woff|woff2)$/i,
+            use: {
+                loader: 'url-loader',
+                options: {
+                limit: 8192,
+                publicPath: './',
+                outputPath: 'static/css/',
+                name: '[name].[ext]'
+                }
+            }
+            })
+
+            return config
+        }
+        })
+    + Mỗi nơi cần dùng Semantic UI thì phải import 2 cái: 
+        import {Icon, Image, Input, Menu} from 'semantic-ui-react';  // cái thuộc tính cần sử dụng
+        import 'semantic-ui-css/semantic.min.css';    //file css mặc định
+ - Thêm redux   
